@@ -1,4 +1,4 @@
-```markdown
+
 # SpaceOS
 
 ## Overview
@@ -55,4 +55,3 @@ SpaceOS is a proof of concept for a new operating system that leverages spatial 
    ```
 
 3. Explore the examples and tests provided in the `examples` and `tests` directories.
-```
