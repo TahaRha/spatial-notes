@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.5.28)  31 MAY 2024 14:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.5.28)  3 JUN 2024 17:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/cosmo/OneDrive/study/research/space-research/notes/main.tex
-(/home/cosmo/OneDrive/study/research/space-research/notes/main.tex
+**/home/cosmo/OneDrive/study/research/space-research/spatial-notes/main.tex
+(/home/cosmo/OneDrive/study/research/space-research/spatial-notes/main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/share/texmf-dist/tex/latex/base/article.cls
@@ -294,25 +294,63 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./main.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 63.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 63.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 63.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--64
+\OT1/cmtt/m/n/10 attributes = \OMS/cmtt/m/n/10 f \OT1/cmtt/m/n/10 loc: [x, y], size: [w, h], type:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--79
+\OT1/cmtt/m/n/10 p = create path attribs[]p = \OMS/cmtt/m/n/10 f\OT1/cmtt/m/n/10 start: x, end: y,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--79
+\OT1/cmtt/m/n/10 q = create path attribs[]p = \OMS/cmtt/m/n/10 f\OT1/cmtt/m/n/10 start: x, end: y,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--84
+\OT1/cmtt/m/n/10 attribs[]f = \OMS/cmtt/m/n/10 f\OT1/cmtt/m/n/10 xline: [N, M], yline: [N, M],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--84
+\OT1/cmtt/m/n/10 type: [], xstart: [], xstep: [], ystart: [],
+ []
+
+[2] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
  ) 
 Here is how much of TeX's memory you used:
- 3547 strings out of 476076
- 52034 string characters out of 5793775
- 1927187 words of memory out of 5000000
- 25637 multiletter control sequences out of 15000+600000
- 563618 words of font info for 57 fonts, out of 8000000 for 9000
+ 3571 strings out of 476076
+ 52425 string characters out of 5793775
+ 1941187 words of memory out of 5000000
+ 25657 multiletter control sequences out of 15000+600000
+ 564736 words of font info for 61 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 57i,6n,65p,291b,223s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on main.pdf (1 page, 45629 bytes).
+ 57i,6n,65p,747b,277s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on main.pdf (2 pages, 110603 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
