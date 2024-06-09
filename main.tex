@@ -174,9 +174,23 @@ system, agentic systems can be a substantial boon for individuals and society
 
 \underline{Important: Balance between safety/risk and cost of actions.}
 
+LLMs are being augmented with tools/scaolding to increase their scores on the dimensions of
+agenticness, including “chain-of-thought” to help with strategic reasoning, “code execution” to help with independent
+execution, and “browsing” to help with adaptability, etc. 
 
+The model developer is the party that develops
+the AI model that powers the agentic system, and thus broadly sets the capabilities and behaviors
+according to which the larger system operates. The system deployer is the party that builds and
+operates the larger system built on top of a model, including by making calls to the developed model
+(such as by providing a “system prompt”[14]), routing those calls to tools with which the agent can
+take actions, and providing users an interface through which they interact with the agent. The
+system deployer may also tailor the AI system to a specific use case, and thus may frequently have
+more domain-specific knowledge than the model developer or even the user. Finally, the agent’s user
+is the party that employs the specific instance of the agentic AI system, by initiating it and providing
+it with the instance-specific goals it should pursue. The user may be able to most directly oversee
+certain behaviors of the agentic system through its operation, during which it can also interact with
+third parties (e.g. other humans, or the providers of APIs with which the agent can interact).
 
-    
 \end{multicols} % End two-column layout
 
 \end{document}
