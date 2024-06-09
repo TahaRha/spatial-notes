@@ -1,2 +1,7 @@
 src/virtual-space/
 resources/
+main.aux
+main.fdp_latexmk
+main.fls
+main.log
+main.synctex.gz
