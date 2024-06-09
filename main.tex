@@ -91,6 +91,92 @@
     \textbf{Real Spaces (r-space)}\\
     These associate with the real physical world and can be closed or open (permission management, encryption). For example, a parking space or storage locker.
 
+
+    \section*{Chain-of-Thought Prompting}
+
+    Chain-of-thought prompting has several attractive properties as an approach for facilitating reasoning
+in language models.
+
+    \begin{itemize}
+\item First, chain of thought, in principle, allows models to decompose multi-step problems into
+intermediate steps, which means that additional computation can be allocated to problems
+that require more reasoning steps.
+\item Second, a chain of thought provides an interpretable window into the behavior of the model,
+suggesting how it might have arrived at a particular answer and providing opportunities
+to debug where the reasoning path went wrong (although fully characterizing a model’s
+computations that support an answer remains an open question).
+\item Third, chain-of-thought reasoning can be used for tasks such as math word problems,
+commonsense reasoning, and symbolic manipulation, and is potentially applicable (at least
+in principle) to any task that humans can solve via language.
+\item Finally, chain-of-thought reasoning can be readily elicited in sufficiently large off-the-shelf
+language models simply by including examples of chain of thought sequences into the
+exemplars of few-shot prompting
+    \end{itemize}
+
+    Another potential benefit of
+chain-of-thought prompting could simply be that such prompts
+allow the model to better access relevant knowledge acquired
+during pretraining. Therefore, we test an alternative configura-
+tion where the chain of thought prompt is only given after the
+answer, isolating whether the model actually depends on the
+produced chain of thought to give the final answer. This variant
+performs about the same as the baseline, which suggests that
+the sequential reasoning embodied in the chain of thought is
+useful for reasons beyond just activating knowledge.
+
+\subsection*{Symbolic Reasoning}
+
+Chain-of-thought prompting not only enables language models to
+perform symbolic reasoning tasks that are challenging in
+the standard prompting setting, but also facilitates length
+generalization to inference-time inputs longer than those
+seen in the few-shot exemplars. Examples:
+
+• Last letter concatenation. This task asks the model
+to concatenate the last letters of words in a name (e.g.,
+“Amy Brown” → “yn”). It is a more challenging version
+of first letter concatenation, which language models can
+already perform without chain of thought.3 We generate
+full names by randomly concatenating names from the
+top one-thousand first and last names from name census
+data (https://namecensus.com/).
+• Coin flip. This task asks the model to answer whether a
+coin is still heads up after people either flip or don’t flip
+the coin (e.g., “A coin is heads up. Phoebe flips the coin.
+Osvaldo does not flip the coin. Is the coin still heads up?”
+→ “no”).
+
+\subsection*{Takeaways}
+
+Question: I am having a hard time relating Chain-of-Thought and Symbolic reasoning with the problem I want to solve, i.e SpaceOS and the path-trailing system, for finding the best paths between objects. (is that even the problem? idk anymore) maybe instead, we can try and look for a neat application of chain-of-thought into the space system. 
+
+
+    \section*{Agentic AI}
+
+    I researchers and companies have recently begun to develop increasingly agentic AI systems:
+systems that adaptably pursue complex goals using reasoning and with limited direct supervision. 1
+For example, a user could ask an agentic personal assistant to “help me bake a good chocolate cake
+tonight,” and the system would respond by figuring out the ingredients needed, finding vendors
+to buy ingredients, and having the ingredients delivered to their doorstep along with a printed
+recipe. Agentic AI systems are distinct from more limited AI systems (like image generation or
+question-answering language models) because they are capable of a wide range of actions and
+are reliable enough that, in certain defined circumstances, a reasonable user could \underline{trust} them to
+effectively and autonomously act on complex goals on their behalf. This trend towards agency may
+both substantially expand the helpful uses of AI systems, and introduce a range of new technical
+and social challenges.
+
+Agentic AI systems could dramatically increase users’ abilities to get more done in their lives
+with less effort. This could involve completing tasks beyond the users’ skill sets, like specialized
+coding. Agentic systems could also benefit users by enabling them to partially or fully offload tasks
+that they already know how to do, meaning the tasks can get done more cheaply, quickly, and at
+greater scale. So long as these benefits exceed the cost of setting up and safely operating an agentic
+system, agentic systems can be a substantial boon for individuals and society
+
+\underline{Important: Balance between safety/risk and cost of actions.}
+
+
+
+    
 \end{multicols} % End two-column layout
 
 \end{document}
