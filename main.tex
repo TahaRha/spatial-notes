@@ -191,6 +191,187 @@ it with the instance-specific goals it should pursue. The user may be able to mo
 certain behaviors of the agentic system through its operation, during which it can also interact with
 third parties (e.g. other humans, or the providers of APIs with which the agent can interact).
 
+Some decisions may be too important for users to delegate to agents, if there is even a small chance
+that they’re done wrong (such as independently initiating an irreversible large financial transaction).
+Requiring a user to proactively authorize these actions, thus keeping a “human-in-the-loop” [ 23], is
+a standard way to limit egregious failures of agentic AI systems.
+
+To address this, users or system deployers
+can set up a second “monitoring” AI system that automatically reviews the primary agentic system’s
+reasoning and actions (made legible as in Section 4.4) to check that they’re in line with expectations
+given the user’s goals. This monitoring AI system could be a classifier, or a generative AI system
+capable of producing its own chains-of-thought [ 41]. Such automated monitors operate at a speed
+and cost that human monitoring cannot hope to match, and may be able to parse modalities (such
+as detecting adversarially-perturbed images) that a human could not. Monitoring can be provided
+as a service by the system deployer, or set up by the user in case they wish to exercise additional
+control.
+
+As AI systems’ levels of agenticness increase, there is a risk that certain model developers, system
+deployers, and users would lose the ability to shut down their agentic AI systems. This could be
+because no viable fallback system exists (e.g., in a similar sense that no one can “shut down” the
+global banking system or the electric grid without very significant costs), or because the agent has
+self-exfiltrated its code to facilities beyond its initiator’s grasp. (is that even a risk?)
+
+ncreasingly agentic AI systems are on the horizon, and society may soon need to take significant
+measures to make sure they work safely and reliably, and to mitigate larger indirect risks associated
+with agent adoption. We hope that scholars and practitioners will work together to determine
+who should be responsible for using what practice, and how to make these practices reliable and
+aordable for a wide range of actors and aordable. Agreeing on such best practices is also unlikely
+to be a one-time eort. If there is continued rapid progress in AI capabilities, society may need to
+repeatedly reach agreement on new best practices for each more capable class of AI systems, in
+order to incentivize speedy adoption of new practices that address these systems’ greater risks.
+18
+
+\subsection*{Takeaways}
+
+Really just a theoretical analysis and hopes for the future of AI systems. Don't think it has much to do with the problem I'm trying to solve. Good to know for the future though.
+
+\section*{Faithful Logical Reasoning via Symbolic Chain-of-Thought}
+
+Symbolic CoT (namely SymbCoT) for log-
+ical reasoning. Unlike existing state-of-the-art
+(SoTA) LLM-based symbolic reasoning systems
+(Olausson et al., 2023; Pan et al., 2023), SymbCoT
+is entirely facilitated by LLMs without relying on
+any external reasoners/tools, i.e., encompassing
+both the initial translation and subsequent reason-
+ing phases. Fig. 2 provides a high-level illustration
+of the overall system workflow. Technically, Sym-
+bCoT comprises four main modules: Translator,
+Planner, Solver, and Verifier.
+
+Unlike the straightforward prompting of “think-
+ing step by step” in vanilla CoT, SymbCoT con-
+siders a plan-then-solve architecture. This in-
+volves decomposing the original complex prob-
+lem into a series of smaller, more manageable
+sub-problems, which are then addressed one
+by one. This way, the entire reasoning process
+becomes more trackable, enabling a clearer and
+more structured approach to problem-solving.
+
+\subsection*{Definition}
+
+A set of premises $P = \{ p_1, p_2, \dots, p_n \}$, where $p_i$ is a logical statement, we try to derive a conclusion regarding a statement $S$. $S$ can be true, false or unknown.
+
+SymbCOT comprises four distinct modules: \textbf{Translator, Planner, Solver and Verifier}.
+\\
+
+\textbf{Translator}: converts the premises $P$ and question statement from natural language to symbolic format.
+
+\textbf{Planner}: breaks down the raw problem into smaller sub-problems, which develops a step-by-step plan that connects the premises to the question statement in both natural language and symbolic form.
+
+\textbf{Solver}: deriving the answer through a sequential logical inference process. For instance,
+the LLM is explicitly instructed to apply logical
+deduction techniques adhering to FOL such as
+Modus Tollens (Enderton, 1972), e.g., If $\neg B$, and
+$A \rightarrow B$, then $\neg A$. This ensures that each step in
+the reasoning process is grounded in established
+logical frameworks, to draw accurate and reliable
+conclusions.
+
+\textbf{Verifier}: First validates the correctness of symbolic translations by prompting the LLM to ascertain their semantic equivalence with the natural language. Second, verifies the ouput of the \textbf{Solver} that has step-by-step reasoning along with the final answer.
+
+\subsection*{Steps}
+
+\subsubsection*{Step 1: Translator}
+
+\fbox{\begin{minipage}{9cm}
+    \textbf{Input:} \\
+    Please parse the context and question into First-Order Logic formulas. \\
+    \textit{Premises}(P)
+    If a cartoon character is yellow, it is from the Simpsons.
+    If a cartoon character is from Simpsons, then it is loved by
+    children. (More premises ...) \\
+    \textit{Statement}(S) \\
+    Ben is ugly or yellow.
+    \end{minipage}}
+
+\fbox{\begin{minipage}{9cm}
+    \textbf{Output:} \\
+    \textit{Premises}(P') \\
+    $\forall x (Yellow(x) \rightarrow Simpsons(x))$ \\
+    $\forall x (Simpsons(x) \rightarrow Loved(x))$ \\
+    (More premises ...) \\
+    \textit{Statement}(S') \\
+    (Yellow(Ben) $\lor$ Ugly(Ben))
+    \end{minipage}}
+\\
+
+\subsubsection*{Step 2: Planner}
+
+At this stage, we utilize $P_c, S_c$, to construct a plan comprising intermediate steps $I = \{ i_1, i_2, \dots, i_m\}$. $P_c$ and $S_c$ are the concatenations of $P, P'$ and $S, S'$ respectively. The plan $I$ is a sequence of steps that connects the premises to the question statement. example: 1: Identify the relevant premise of Ben. 2: Identify the relevant premise of yellow and ugly. etc. etc.
+
+\subsubsection*{Step 3: Solver}
+
+Solver operates on $P_c$, the question statement $S_c$ and the plan $I$.  It iteratively
+selects pertinent premises and infers new insights
+through a sequence of reasoning steps, represented
+as $D = \{ d_1, \dots, d_l\}$. Here, each $d_k$ is an insight referred from the releavant premises, contributing to $S_c$
+
+\subsubsection*{Step 4: Verifier}
+
+Now based on the concatenated inputs $P_c$ and $S_c$ from Step 1, and the reasoning chain $D$ and derived conclusion $C$ from Step 3, the Verifier conducts two ways of verification process. First, it checks whether the symbolic language is correctly translated based on the original natural language context, represented as $V_{trans} = \text{Verify}(P \rightarrow P', S \rightarrow S')$. If any incorrect translation is found, the Verifier will undertake refinements to produce a revised translation of the premises and statement, denoted as $P'_{refined}$ and $S'_{refined}$. Second, it will check whether the inference $D$ adheres to valid logical rules. If any logical fallacy is detected, the Verifier will conduct a refined derivation $D_{refined}$ using the corrected logic rules. Consequently, these refinements lead to the generation of a refined answer, represented as $C_{refined}$. Upon successful verification as $V_{validity}(D / D_{refined})$, the Verifier produces a verified answer $C_{verified}$.
+
+\fbox{\begin{minipage}{9cm}
+\textbf{Input:}
+Please verify: 1) the symbolic context is consistent with the natural language; 2) the solving step is logically valid.
+
+\begin{itemize}
+    \item \textless Premises\textgreater $(P_c)$
+    \begin{itemize}
+        \item If a cartoon character is yellow, it is from the Simpsons: $\forall x (\text{Yellow}(x) \rightarrow \text{Simpsons}(x))$
+        \item If a cartoon character is from Simpsons, then it is loved by children: $\forall x (\text{Simpsons}(x) \rightarrow \text{Loved}(x))$
+        \item (... More premises ...)
+    \end{itemize}
+    \item \textless Statement\textgreater $(S_c)$
+    \begin{itemize}
+        \item Ben is ugly or yellow: $(\text{Yellow}(\text{ben}) \lor \text{Ugly}(\text{ben}))$
+    \end{itemize}
+    \item \textless Reasoning Steps\textgreater $(D)$
+    \begin{itemize}
+        \item Step 1: $\text{Yellow}(\text{ben}) \rightarrow \text{Simpsons}(\text{ben})$ by Modus Ponens from premise 1.
+        \item Step 2: $\text{Simpsons}(\text{ben}) \rightarrow \text{Loved}(\text{ben})$ by Modus Ponens from premise 2.
+        \item (... More steps ...)
+    \end{itemize}
+    \item \textless Conclusion\textgreater $(C)$
+    \begin{itemize}
+        \item Thus, we can conclude that $(\text{Yellow}(\text{ben}) \lor \text{Ugly}(\text{ben}))$ is false by contradiction.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Output:}
+\begin{itemize}
+    \item \textless Translation Verification\textgreater $(P / P'_{refined})$ and $(S / S'_{refined})$
+    \begin{itemize}
+        \item Verify context consistency: "If a cartoon character is yellow, it is from the Simpsons" is semantically consistent with $\forall x (\text{Yellow}(x) \rightarrow \text{Simpsons}(x))$.
+        \item (... More translation verification ...)
+    \end{itemize}
+    \item \textless Logic Verification\textgreater $(D / D_{refined})$
+    \begin{itemize}
+        \item Verify solving logic step by step: Step 1 correctly implements Modus Ponens using premise 1; Step 2 correctly implements Modus Ponens using premise 2;
+        \item (... More logic verification ...)
+    \end{itemize}
+    \item \textless Conclusion Verification\textgreater $(C_{verified} / C_{refined})$
+    \begin{itemize}
+        \item Thus, the solving process is logically valid. The answer is verified to be false.
+    \end{itemize}
+\end{itemize}
+\end{minipage}}
+
+From the tables, I was able to deduce that the most important step is the \underline{Translator} in most datasets tests, followed by the \underline{Solver} and \underline{Planner}. The \underline{Verifier} is the least important step in the process, but can be crucial in ensuring consistency in some cases, such as for FOLIO.
+
+Plan-then-solve design, and use of symbolic repsresentation and rules shows significant reasoning enhancement.
+
+\subsubsection*{Hybrid use of Natural Language and Symbolic Reasoning}
+
+Due to IL (information loss) and IE (information error), translations might be incorrect. To mitigate this, the concatenation of natural language and symbolic reasoning can be used. This demonstrates the effectiveness of our LLM-based symbolic reasoning approach, which cross-references both symbolic and natural language data to rectify translation errors and bolster logical reasoning.
+
+\underline{\textbf{Note}}: Often, LLMs may deliver correct answers through flawed reasoning, essentially reaching the right conclusion by luck. This can be quite common using CoT, though with SymbCoT, it happens less often, especially with after the Verifier module. 
+
+
+
+
 \end{multicols} % End two-column layout
 
 \end{document}
